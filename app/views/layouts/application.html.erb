@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%= csrf_meta_tags %>
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<meta name="google-site-verification" content="phz3TvJqeQQvtE2F-l7n_dVzKzGXuAx2vKOd_jeGvyI" />
+
+		<title>WatchDomains</title>
+		<!-- Custom styles for this template -->
+		<!-- Hotjar Tracking Code for http://watchdomain.org -->
+		<script>
+		    (function(h,o,t,j,a,r){
+		        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+		        h._hjSettings={hjid:882932,hjsv:6};
+		        a=o.getElementsByTagName('head')[0];
+		        r=o.createElement('script');r.async=1;
+		        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+		        a.appendChild(r);
+		    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+		</script>
+	</head>
+
+	<body class="bg-light">
+
+	<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">WatchDomains</a>
+		<button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+			<ul class="navbar-nav mr-auto">
+				<% if user_signed_in? %>
+					<li class="nav-item active">
+						<a class="nav-link" href="<%= domain_list_path %>">Dashboard <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="<%= edit_user_registration_path %>">Profile</a>
+					</li>
+
+					<li class="nav-item pull-right">
+						<%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+					</li>
+				<% else %>
+					<li class="nav-item active">
+						<a class="nav-link" href="<%= new_user_registration_path %>">Register <span class="sr-only">(current)</span></a>
+					</li>
+
+					<li class="nav-item active">
+						<a class="nav-link" href="<%= new_user_session_path %>">Login <span class="sr-only"></span></a>
+					</li>
+				<% end %>
+				<!-- <li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
+					<div class="dropdown-menu" aria-labelledby="dropdown01">
+					<a class="dropdown-item" href="#">Action</a>
+					<a class="dropdown-item" href="#">Another action</a>
+					<a class="dropdown-item" href="#">Something else here</a>
+					</div>
+				</li> -->
+			</ul>
+			<!--<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>-->
+		</div>
+	</nav>
+
+
+	<% if user_signed_in? %>
+	<div class="nav-scroller bg-white box-shadow">
+		<nav class="nav nav-underline">
+			<!-- <a class="nav-link active" href="#">Dashboard</a> -->
+			<a class="nav-link" href="<%= domain_list_path %>">
+				Domains
+				<span class="badge badge-pill bg-light align-text-bottom"><%#= @domains.count %></span>
+			</a>
+			<a class="nav-link" href="<%= add_domains_path %>">Add Domain</a>
+		</nav>
+	</div>
+	<% end %>
+
+	<main role="main" class="container">
+		<div class="my-3 p-3 bg-white rounded box-shadow">
+			<% if flash[:notice] %>
+				<div class="alert alert-success"><%= flash[:notice] %></div>
+			<% end %>
+
+			<% if flash[:alert] %>
+				<div class="alert alert-danger"><%= flash[:alert] %></div>
+			<% end %>
+			
+			<%= yield %>
+		</div>
+	</main>
+  </body>
+</html>
+<script>
+	document.addEventListener('turbolinks:load', function(){
+		Holder.run();
+	});
+</script>

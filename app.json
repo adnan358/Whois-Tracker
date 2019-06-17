@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "dokku": {
+      "predeploy": "bundle install",
+      "postdeploy": "bundle exec start"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+<%= simple_form_for @domain, url: add_domains_save_path do |f| %>
+	<%= f.input :domain_name %>
+	<%= f.input :description %>
+	<%= f.button :submit %>
+<% end %>

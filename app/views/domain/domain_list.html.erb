@@ -1,0 +1,21 @@
+<h6 class="border-bottom border-gray pb-2 mb-0">Added Domains</h6>
+
+<% @domains.each do |domain| %>
+	<div class="media text-muted pt-3">
+		<img data-src="holder.js/32x32?theme=thumb&bg=<%= domain.color %>&fg=<%= domain.color %>&size=1" alt="" class="mr-2 rounded">
+		<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+			<strong class="d-block text-gray-dark"><%= domain.domain_name %></strong>
+			<%= domain.description.blank? ? "<br>".html_safe : domain.description %>
+		</p>
+
+		<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+			<strong class="d-block text-gray-dark">Expire Time: <%= (domain.expire_time.to_date - Date.today).to_i %> days</strong>
+			<br>
+		</p>
+		<%= link_to 'X', del_domain_path(id: domain.id), method: :post %>
+	</div>
+<% end  %>
+
+<small class="d-block text-right mt-3">
+	<a href="#">More Domains</a>
+</small>
