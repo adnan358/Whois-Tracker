@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'simple_form'
 
 gem 'devise'
-gem 'sidekiq', '~> 5.1', '>= 5.1.3'
+gem 'sidekiq', '~> 6.2'
 gem 'figaro'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
